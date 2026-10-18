@@ -1,6 +1,7 @@
 package com.marco.stockordermanager.controller;
 
 import com.marco.stockordermanager.dto.PedidoRequestDTO;
+import com.marco.stockordermanager.dto.PedidoResponseDTO;
 import com.marco.stockordermanager.model.Pedido;
 import com.marco.stockordermanager.service.PedidoService;
 import jakarta.validation.Valid;
@@ -16,7 +17,7 @@ public class PedidoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Pedido criarPedido(@RequestBody @Valid PedidoRequestDTO dto){
+    public PedidoResponseDTO criarPedido(@RequestBody @Valid PedidoRequestDTO dto){
         return pedidoService.criarPedido(dto);
     }
 }
