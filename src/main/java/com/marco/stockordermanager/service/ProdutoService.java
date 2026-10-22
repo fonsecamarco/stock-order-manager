@@ -67,4 +67,16 @@ public class ProdutoService {
         produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() - quantidade);
         return  produtoRepository.save(produto);
     }
+
+    public Produto reporEstoque(Long id, Integer quantidade) {
+        Produto produto = findById(id);
+
+        if (quantidade <= 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A quantidade para reposição deve ser maior que zero.");
+        }
+
+        produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + quantidade);
+        return produtoRepository.save(produto);
+
+    }
 }

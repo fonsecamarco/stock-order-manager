@@ -48,4 +48,9 @@ public class ProdutoController {
     public Produto darBaixaEstoque(@PathVariable Long id, @RequestParam Integer quantidade) {
         return produtoService.darBaixaEstoque(id, quantidade);
     }
+
+    @PutMapping("/{id}/repor-estoque")
+    public Produto reporEstoque(@PathVariable Long id, @RequestParam Integer quantidade) {
+        return produtoService.reporEstoque(id, quantidade);
+    }
 }
