@@ -21,7 +21,7 @@ Sistema Backend desenvolvido com Spring Boot, Java 21, Spring Data JPA e Bean Va
 - [x] **Edição de Produto:** Atualiza dados garantindo que o novo nome não pertença a outro produto existente.
 - [x] **Remoção de Produto:** Exclui o produto do banco.
 - [x] **Baixa Manual de Estoque:** Subtrai quantidade do saldo disponível com validação de limite.
-- [x] **Reposição de Estoque:** *(Pendente de implementação)*
+- [x] **Reposição de Estoque:** Adiciona quantidade ao saldo disponível com validação de valor maior que zero (`400 BAD_REQUEST`).
 
 ### 🛒 Módulo de Pedidos
 - [x] **Criação de Pedido:** Valida saldo em estoque de cada item, deduz do estoque, grava o preço unitário do momento e calcula o valor total acumulado.
