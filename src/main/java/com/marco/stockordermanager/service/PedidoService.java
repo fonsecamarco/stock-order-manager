@@ -4,6 +4,7 @@ import com.marco.stockordermanager.dto.ItemPedidoRequestDTO;
 import com.marco.stockordermanager.dto.ItemPedidoResponseDTO;
 import com.marco.stockordermanager.dto.PedidoRequestDTO;
 import com.marco.stockordermanager.dto.PedidoResponseDTO;
+import com.marco.stockordermanager.exceptions.RegraDeNegocioException;
 import com.marco.stockordermanager.model.ItemPedido;
 import com.marco.stockordermanager.model.Pedido;
 import com.marco.stockordermanager.model.Produto;
@@ -42,8 +43,7 @@ public class PedidoService {
             Produto produto = produtoService.findById(itemDTO.produtoId());
 
             if (produto.getQuantidadeEstoque() < itemDTO.quantidade()) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Estoque insuficiente para o produto: " + produto.getNome());
+                throw new RegraDeNegocioException("Estoque insuficiente para o produto: " + produto.getNome());
             }
 
             produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() - itemDTO.quantidade());

@@ -1,6 +1,7 @@
 package com.marco.stockordermanager.service;
 
 import com.marco.stockordermanager.dto.ProdutoRequestDTO;
+import com.marco.stockordermanager.exceptions.ResourceNotFoundException;
 import com.marco.stockordermanager.model.Produto;
 import com.marco.stockordermanager.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,7 @@ public class ProdutoService {
 
     public Produto findById(Long id) {
         return produtoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
-    }
+                .orElseThrow(() -> new ResourceNotFoundException(id));    }
 
     public Produto save(ProdutoRequestDTO dto) {
 
