@@ -10,6 +10,7 @@ Sistema Backend desenvolvido com Spring Boot, Java 21, Spring Data JPA, PostgreS
 - **Banco de Dados & Containerização:** PostgreSQL rodando via Docker & Docker Compose.
 - **Arquitetura:** Camadas bem definidas (Controller, Service, Repository, DTO, Entity).
 - **Integridade de Dados:** Controle transacional de atomicidade (`@Transactional`), histórico de preço unitário e sincronização automática de estoque na criação e cancelamento de pedidos.
+- **Tratamento Global de Exceções:** Captura centralizada via `@RestControllerAdvice` padronizando respostas JSON (`StandardError`) para recursos não encontrados (`404`), regras de negócio e falhas do Bean Validation (`400`).
 
 ---
 
@@ -76,8 +77,3 @@ O projeto utiliza **PostgreSQL 15** rodando via **Docker Compose**.
 | `PUT` | `/pedidos/{id}/cancelar` | Cancelar pedido e estornar itens ao estoque |
 
 ---
-
-## 📌 Próximos Passos & Metas
-
-* [ ] **Tratamento Global de Exceções (`@ControllerAdvice`):** Padronização das respostas de erro em formato JSON (`StandardError`) para capturar falhas de recurso não encontrado (`404`), validações de argumentos inválidos (`400`) e exceções de regras de negócio.
-* [ ] **Testes de Integração:** Implementação de testes automatizados com JUnit e Mockito para garantir o comportamento das regras de negócio.
