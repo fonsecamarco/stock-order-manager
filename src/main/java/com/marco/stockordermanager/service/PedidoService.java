@@ -5,15 +5,14 @@ import com.marco.stockordermanager.dto.ItemPedidoResponseDTO;
 import com.marco.stockordermanager.dto.PedidoRequestDTO;
 import com.marco.stockordermanager.dto.PedidoResponseDTO;
 import com.marco.stockordermanager.exceptions.RegraDeNegocioException;
+import com.marco.stockordermanager.exceptions.ResourceNotFoundException;
 import com.marco.stockordermanager.model.ItemPedido;
 import com.marco.stockordermanager.model.Pedido;
 import com.marco.stockordermanager.model.Produto;
 import com.marco.stockordermanager.repository.PedidoRepository;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -74,7 +73,7 @@ public class PedidoService {
 
     public Pedido buscarPorId(Long id) {
         return pedidoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado com o ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public PedidoResponseDTO buscarPorIdDTO(Long id) {
@@ -87,7 +86,7 @@ public class PedidoService {
         Pedido pedido = buscarPorId(id);
 
         if ("CANCELADO".equalsIgnoreCase(pedido.getStatus())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Este pedido já está cancelado.");
+            throw new RegraDeNegocioException("Este pedido já está cancelado.");
         }
 
         for (ItemPedido item : pedido.getItens()) {
