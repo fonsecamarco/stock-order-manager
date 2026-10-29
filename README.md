@@ -9,6 +9,7 @@ Sistema Backend desenvolvido com Spring Boot, Java 21, Spring Data JPA, PostgreS
 - **Spring Boot:** Spring Web, Spring Data JPA, Bean Validation (`@Valid`, `@NotNull`, `@NotBlank`, `@Positive`).
 - **Banco de Dados & Containerização:** PostgreSQL rodando via Docker & Docker Compose.
 - **Arquitetura:** Camadas bem definidas (Controller, Service, Repository, DTO, Entity).
+- **Testes Unitários & Mocks:** Testes automatizados com **JUnit 5** e **Mockito** em isolamento completo.
 - **Integridade de Dados:** Controle transacional de atomicidade (`@Transactional`), histórico de preço unitário e sincronização automática de estoque na criação e cancelamento de pedidos.
 - **Tratamento Global de Exceções:** Captura centralizada via `@RestControllerAdvice` padronizando respostas JSON (`StandardError`) para recursos não encontrados (`404`), regras de negócio e falhas do Bean Validation (`400`).
 
