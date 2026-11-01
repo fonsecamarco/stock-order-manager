@@ -1,13 +1,21 @@
 package com.marco.stockordermanager.dto;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
+import com.marco.stockordermanager.model.Produto;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 public record ProdutoResponseDTO(
-        @NotEmpty(message = "O pedido deve conter pelo menos um item.")
-        @Valid
-        List<ItemPedidoRequestDTO> itens
-) {}
-
+        Long id,
+        String nome,
+        BigDecimal preco,
+        Integer quantidadeEstoque
+) {
+    public ProdutoResponseDTO(Produto produto) {
+        this(
+                produto.getId(),
+                produto.getNome(),
+                produto.getPreco(),
+                produto.getQuantidadeEstoque()
+        );
+    }
+}
